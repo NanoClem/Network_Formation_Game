@@ -3,28 +3,8 @@ import matplotlib.pyplot as plt
 from random import random
 import json
 
+from graphs import MyRandomGraph
 
-
-def random_graph(n, p):
-    """ Create a random graph where each node have a probability to connect to any other
-    """
-    nbunch  = [i for i in range(n)]   # graph nodes
-    ebunch  = []                      # graph edges
-    randnum = 0                       # randomly generated number (between 0 and 1 included)
-    temp    = nbunch                  # temporary stock nodes without the current one to avoid self-connection
-    G = nx.Graph()
-    G.add_nodes_from(nbunch)         # add our nodes to the graph
-    
-    for node in list(G.nodes):
-        temp.remove(node)         # removing current node
-        for ni in temp:
-            randnum = random()
-            if randnum <= p:
-                ebunch.append( (node, ni) )     # add new connexion to ebunch 
-        temp.append(node)                          # get current node back
-    
-    G.add_edges_from(ebunch)
-    return G
 
 
 
@@ -42,11 +22,11 @@ if __name__ == "__main__":
     # PARAMS
     n = 3
     p = 0.1
-    G_rand = random_graph(n, p)
+    G_rand = MyRandomGraph(n, p)
     
     # PRINT
     print("GRAPH")
-    print(G_rand.graph)
+    print(G_rand.nodes)
     print("EDGES")
     print( dict(G_rand.edges.items()))
     
