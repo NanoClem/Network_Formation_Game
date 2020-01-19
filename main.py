@@ -21,14 +21,16 @@ if __name__ == "__main__":
     #=========================================================
     # PARAMS
     n = 3
-    p = 0.1
-    G_rand = MyRandomGraph(n, p)
+    p = 0.9
+    G_rand = MyRandomGraph(n, p, "Random graph")
     
     # PRINT
     print("GRAPH")
-    print(G_rand.nodes)
-    print("EDGES")
-    print( dict(G_rand.edges.items()))
+    print( "{} \n".format(nx.info(G_rand)) )
+    print("NODES")
+    print( "{} \n".format(G_rand.nodes.data()) )
+    # print("EDGES")
+    # print( dict(G_rand.edges.items()))
     
     # DRAW
     nx.draw(G_rand, with_labels=True, font_weight='bold')
