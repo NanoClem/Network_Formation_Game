@@ -10,10 +10,12 @@ class MyRandomGraph(nx.Graph):
     """
     
     def __init__(self, n, p, title=None):
-        """ CONSTRUCTOR of MyRandomGraph class
-        Parameters:
-            (int) n   : number of nodes in the graph
-            (float) p : probability of the nodes's connexion
+        """ Initialise a random graph with nodes and a probability for them to connect
+        
+        Parameters
+        -----
+            (int) n   : number of nodes
+            (float) p : probability of a node to connect with another
         """
         nx.Graph.__init__(self, name=title)     # parent constructor
         self.n = n
@@ -25,10 +27,13 @@ class MyRandomGraph(nx.Graph):
     def getValue(self, node):
         """ Returns the node's value, corresponding to its degree
         
-        Parameter:
+        Parameters
+        -----
             node(any): current node to evaluate
             
-        Returns: the node degree
+        Returns
+        ----- 
+        The node degree
         """
         return self.degree(node)
     
@@ -36,6 +41,14 @@ class MyRandomGraph(nx.Graph):
     
     def getScore(self, node):
         """ Returns the score of a node, corresponding to the sum of its neighbors's values
+        
+        Parameters
+        -----
+            node(any): current node to evaluate
+            
+        Returns
+        -----
+        The score field of the node
         """
         return self.nodes[node]['score']
         
@@ -43,6 +56,14 @@ class MyRandomGraph(nx.Graph):
         
     def _computeNodeScore(self, node):
         """ Compute the score of a node
+        
+        Parameters
+        -----
+            node(any): current node to evaluate
+            
+        Returns
+        -----
+        The computed score of the node
         """
         score = 0
         neighbors = list(self.neighbors(node))
@@ -63,7 +84,7 @@ class MyRandomGraph(nx.Graph):
       
         
     def generate(self):
-        """ Generate connexions of the random graph
+        """ Generate edges of the graph
         """
         nbunch  = [i for i in range(self.n)]   # graph nodes
         ebunch  = []                           # graph edges
