@@ -37,7 +37,7 @@ class MyRandomGraph(nx.Graph):
         return self.nodes[node]['value']
         
     
-    
+
     def getScore(self, node):
         """ Returns the score of a node, corresponding to the sum of its neighbors's values
         
@@ -100,11 +100,11 @@ class MyRandomGraph(nx.Graph):
     def generate(self):
         """ Generate edges of the graph
         """
-        nbunch  = [i for i in range(self.n)]   # graph nodes
-        ebunch  = []                           # graph edges
-        randnum = 0                            # randomly generated number (between 0 and 1 included)
-        temp    = nbunch                       # temporary stock nodes without the current one to avoid self-connection
-        self.add_nodes_from(nbunch, score=0)   # add our nodes to the graph with a default score
+        nbunch  = [i for i in range(self.n)]            # graph nodes
+        ebunch  = []                                    # graph edges
+        randnum = 0                                     # randomly generated number (between 0 and 1 included)
+        temp    = nbunch                                # temporary stock nodes without the current one to avoid self-connection
+        self.add_nodes_from(nbunch, value=0, score=0)   # add our nodes to the graph with a default value and score
         
         for node in list(self.nodes):
             temp.remove(node)         # removing current node
