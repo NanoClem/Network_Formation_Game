@@ -17,10 +17,9 @@ class MyRandomGraph(nx.Graph):
             (int) n   : number of nodes
             (float) p : probability of a node to connect with another
         """
-        nx.Graph.__init__(self, name=title)     # parent constructor
+        super(MyRandomGraph, self).__init__(self, name=title)     # parent constructor
         self.n = n
         self.p = p
-        self.generate()
         
         
         
@@ -29,14 +28,14 @@ class MyRandomGraph(nx.Graph):
         
         Parameters
         -----
-            node(any): current node to evaluate
+            node(any): current node which value is returned
             
         Returns
         ----- 
         The node degree
         """
-        return self.degree(node)
-    
+        return self.nodes[node]['value']
+        
     
     
     def getScore(self, node):
@@ -44,7 +43,7 @@ class MyRandomGraph(nx.Graph):
         
         Parameters
         -----
-            node(any): current node to evaluate
+            node(any): current node which score is returned
             
         Returns
         -----
@@ -59,7 +58,7 @@ class MyRandomGraph(nx.Graph):
         
         Parameters
         -----
-            node(any): current node to evaluate
+            node(any): current node which score is computed
             
         Returns
         -----
@@ -68,21 +67,36 @@ class MyRandomGraph(nx.Graph):
         score = 0
         neighbors = list(self.neighbors(node))
         for n in neighbors:
+            self.nodes[n]['value'] = self._evaluateNode(n)  # assign value to the node
             score += self.getValue(n)
             
         return score
     
     
-    
+
     def _computeScores(self):
         """ Compute the score of each node of the graph
         """
         nodes = list(self.nodes)
         for n in nodes:
             self.nodes[n]['score'] = self._computeNodeScore(n)
-      
-      
+
+    
+    
+    def _evaluateNode(self, node):
+        """
+        Parameters
+        -----
+            node(any): current node to evaluate
+
+        Returns
+        -----
+            The value of the node
+        """
+        return self.degree(node)
         
+
+      
     def generate(self):
         """ Generate edges of the graph
         """
