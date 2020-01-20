@@ -104,12 +104,13 @@ class MyRandomGraph(nx.Graph):
         ebunch  = []                                    # graph edges
         randnum = 0                                     # randomly generated number (between 0 and 1 included)
         temp    = nbunch                                # temporary stock nodes without the current one to avoid self-connection
-        self.add_nodes_from(nbunch, value=0, score=0)   # add our nodes to the graph with a default value and score
+        self.add_nodes_from(nbunch, value=0, score=0, rank=None)   # add our nodes to the graph with a default value, score and rank
         
         for node in list(self.nodes):
             temp.remove(node)         # removing current node
             for ni in temp:
                 randnum = random()
+                # NODE STRATEGY
                 if randnum <= self.p:
                     ebunch.append( (node, ni) )     # add new connexion to ebunch 
             temp.append(node)                       # get current node back
