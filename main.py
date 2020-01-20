@@ -23,6 +23,7 @@ if __name__ == "__main__":
     n = 3
     p = 0.9
     G_rand = MyRandomGraph(n, p, "Random graph")
+    G_rand.generate()
     
     # PRINT
     print("GRAPH")
