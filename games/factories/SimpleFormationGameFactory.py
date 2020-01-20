@@ -8,10 +8,24 @@ class SimpleFormationGameFactory(AbstractGameFactory):
     """
 
     def create_NodeEvaluationSystem(self):
-        pass
+        """
+        """
+        return DegreeEvaluation()
+
 
     def create_ScoreComputationSystem(self):
-        pass
+        """
+        """
+        return NeighborsSumValue()
+
+
+    def create_RankingSystem(self):
+        """
+        """
+        return MaxScore()
+
 
     def create_TurnSystem(self):
-        pass
+        """
+        """
+        TurnByTurn()

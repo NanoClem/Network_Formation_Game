@@ -8,10 +8,24 @@ class BadKarmaGameFactory(AbstractGameFactory):
     """
 
     def create_NodeEvaluationSystem(self):
-        pass
+        """
+        """
+        return KarmaEvaluation()
+
 
     def create_ScoreComputationSystem(self):
-        pass
+        """
+        """
+        return NeighborsMeanValue()
+
+
+    def create_RankingSystem(self):
+        """
+        """
+        return MinScore()
+
 
     def create_TurnSystem(self):
-        pass
+        """
+        """
+        TurnByTurn()
