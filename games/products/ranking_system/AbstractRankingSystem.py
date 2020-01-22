@@ -26,7 +26,7 @@ class AbstractRankingSystem(object):
         for i in range(len(rankedNodes)):
             if drawMode:
                 if rankedNodes[i][1]['score'] == if rankedNodes[i-1][1]['score']    # BEWARE : first element will compare to the last
-                    rankedNodes[i][1]['rank'] = rankedNodes[i-1][1]['rank']         # Assign an equal rank if nodes are ex-aequo
+                    rankedNodes[i][1]['rank'] = rankedNodes[i-1][1]['rank']         # Assign an equal rank if both nodes are ex-aequo
             else:
             rankedNodes[i][1] = {'rank': i+1}   # keep only the rank attribute and set its value
             
