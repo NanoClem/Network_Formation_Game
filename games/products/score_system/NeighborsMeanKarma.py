@@ -1,21 +1,21 @@
 from .AbstractScoreComputationSystem import AbstractScoreComputationSystem
-from ..evaluation_system import DegreeEvaluation
+from ..evaluation_system import KarmaEvaluation
 
 
-class NeighborsSumValue(AbstractScoreComputationSystem):
+class NeighborsMeanValue(AbstractScoreComputationSystem):
     """
     """
-
+    
     def __init__(self):
         """ CONSTRUCTOR
         -----
-        Init the neighbors sum value computation system
+        Init the neighbors mean of karma computation system
         """
-        self.nodeEval = DegreeEvaluation()
+        self.nodeEval = KarmaEvaluation()
 
     
     def computeNodeScore(self, graph, node):
-        """ Compute the score of a node by adding its neighbors value
+        """ Compute the score of a node by getting the mean of defection among its neighbors
 
         Parameters
         -----
@@ -25,7 +25,7 @@ class NeighborsSumValue(AbstractScoreComputationSystem):
         score = 0
         neighbors = list(graph.neighbors(node))
         for n in neighbors:
-            graph.nodes[n]['value'] = self.nodeEval.evaluateNode(graph, n)  # assign value to the node
+            graph.nodes[n]['value'] = self.nodeEval.evaluateNode(graph, n)  # percentage of a neighbor's defection
             score += graph.getValue(n)
             
-        return score
+        return score / len(neighbors)   # mean of neighbors's defection percentage

@@ -7,7 +7,6 @@ class MinScore(AbstractRankingSystem):
     """
     """
     
-    ##TODO : define what to do when there is a tie case
     def getNodesRanking(self, graph):
         """ Sorts nodes in ascending mode based on their 'score' field.
         A rank of a node corresponds to its position in the returned result.

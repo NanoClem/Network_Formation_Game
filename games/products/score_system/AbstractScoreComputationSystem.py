@@ -16,8 +16,7 @@ class AbstractScoreComputationSystem(object):
 
         Parameters
         -----
-        graph (networkx.Graph) :
-        node (any) :
+        graph(nx.Graph) : graph at which the score of each node is computed
         """
         nodes = list(graph.nodes)
         for n in nodes:
