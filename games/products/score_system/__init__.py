@@ -1,2 +1,2 @@
 from .NeighborsSumValue import NeighborsSumValue
-from .NeighborsMeanValue import NeighborsMeanValue
+from .NeighborsMeanKarma import NeighborsMeanKarma
