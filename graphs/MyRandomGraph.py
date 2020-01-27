@@ -1,9 +1,9 @@
-import networkx as nx
 from random import random
+from .AbstractGraph import AbstractGraph
 
 
 
-class MyRandomGraph(nx.Graph):
+class MyRandomGraph(AbstractGraph):
     """
     This class represents a random graph where each node have 
     a given probability to connect to any other.
@@ -17,41 +17,20 @@ class MyRandomGraph(nx.Graph):
             (int) n   : number of nodes
             (float) p : probability of a node to connect with another
         """
-        super(MyRandomGraph, self).__init__(self, name=title)     # parent constructor
+        super().__init__(title)     # parent constructor
         self.n = n
         self.p = p
-        
-        
-        
-    def getValue(self, node):
-        """ Returns the node's value, corresponding to its degree
-        
-        Parameters
-        -----
-            node(any): current node which value is returned
-            
-        Returns
-        ----- 
-        The node degree
-        """
-        return self.nodes[node]['value']
-        
-    
+        self.setup()
 
-    def getScore(self, node):
-        """ Returns the score of a node, corresponding to the sum of its neighbors's values
-        
-        Parameters
-        -----
-            node(any): current node which score is returned
-            
-        Returns
-        -----
-        The score field of the node
+
+
+    def setup(self):
         """
-        return self.nodes[node]['score']
+        """
+        nbunch  = [i for i in range(self.n)]
+        self.add_nodes_from(nbunch)
         
-        
+
         
     def _computeNodeScore(self, node):
         """ Compute the score of a node
@@ -100,17 +79,15 @@ class MyRandomGraph(nx.Graph):
     def generate(self):
         """ Generate edges of the graph
         """
-        nbunch  = [i for i in range(self.n)]            # graph nodes
-        ebunch  = []                                    # graph edges
-        randnum = 0                                     # randomly generated number (between 0 and 1 included)
-        temp    = nbunch                                # temporary stock nodes without the current one to avoid self-connection
-        self.add_nodes_from(nbunch, value=0, score=0, karma=0, rank=None)   # add our nodes to the graph with a default value, score, karma and rank
+        ebunch  = []                  # graph edges
+        randnum = 0                   # randomly generated number (between 0 and 1 included)
+        temp    = list(self.nodes)    # temporary stock nodes without the current one to avoid self-connection
         
         for node in list(self.nodes):
             temp.remove(node)         # removing current node
             for ni in temp:
-                randnum = random()
                 # NODE STRATEGY
+                randnum = random()
                 if randnum <= self.p:
                     ebunch.append( (node, ni) )     # add new connexion to ebunch 
             temp.append(node)                       # get current node back

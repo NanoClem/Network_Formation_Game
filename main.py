@@ -21,34 +21,24 @@ if __name__ == "__main__":
     #=========================================================
     # PARAMS
     n = 5
-    p = 0.4
+    p = 0.1
     G_rand = MyRandomGraph(n, p, "Random graph")
     G_rand.generate()
 
-    # RESULTS
+    # # RESULTS
     scores = dict(G_rand.nodes.data())
-    scores = sorted(scores.items(), key=lambda x: x[1]['score'])
+    scores = sorted(scores.items(), key=lambda x: x[1]['score'], reverse=True)
     edges = dict(G_rand.edges.items())
-
-    # TESTS
-    test = {
-        0: {"rank": 1},
-        1: {"rank": 2}
-    }
-
-    print(scores)
-
-
     
     # PRINT
-    # print("\nGRAPH")
-    # print( "{} \n".format(nx.info(G_rand)) )
-    # print("NODES")
-    # print( "{} \n".format(scores) )
-    # print("RANKING")
-    # print( "{} \n".format(scores))
-    # print("EDGES")
-    # print("{} \n".format(edges) )
+    print("\nGRAPH")
+    print( "{} \n".format(nx.info(G_rand)) )
+    print("NODES")
+    print( "{} \n".format(scores) )
+    print("RANKING")
+    print( "{} \n".format(scores))
+    print("EDGES")
+    print("{} \n".format(edges) )
     
     # DRAW
     nx.draw(G_rand, with_labels=True, font_weight='bold')
