@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 
 
-class AbstractRankingSystem(object):
+class AbstractRankingSystem(ABC):
     """
     """
     

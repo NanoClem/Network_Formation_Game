@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 
-class AbstractScoreComputationSystem(object):
+class AbstractScoreComputationSystem(ABC):
     """
     """
     
