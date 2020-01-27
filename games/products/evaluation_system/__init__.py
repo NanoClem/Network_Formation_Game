@@ -1,2 +1,3 @@
+from .AbstractNodeEvaluationSystem import AbstractNodeEvaluationSystem
 from .KarmaEvaluation import KarmaEvaluation
 from .DegreeEvaluation import DegreeEvaluation
