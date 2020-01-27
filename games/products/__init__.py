@@ -1,4 +1,4 @@
 from .evaluation_system import DegreeEvaluation, KarmaEvaluation
-from .score_system import NeighborsSumValue, NeighborsMeanValue
+from .score_system import NeighborsSumValue, NeighborsMeanKarma
 from .ranking_system import MaxScore, MinScore
-from .turn_system import TurnByTurn, OneShotTurn
+from .turn_system import TurnByTurn, OneTurn

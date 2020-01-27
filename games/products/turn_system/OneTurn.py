@@ -2,7 +2,7 @@ from .AbstractTurnSystem import AbstractTurnSystem
 
 
 
-class TurnByTurn(AbstractTurnSystem):
+class OneTurn(AbstractTurnSystem):
     """
     """
     
