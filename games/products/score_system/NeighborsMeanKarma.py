@@ -12,8 +12,13 @@ class NeighborsMeanKarma(AbstractScoreComputationSystem):
 
         Parameters
         -----
-        graph(nx.Graph) : graph at which the score the node is computed
-        node(any) : current node belonging to the graph, whose score is computed
+        graph (nx.Graph) : graph at which the score the node is computed \n
+        node (any) : current node belonging to the graph, whose score is computed \n
+        evalSystem (AbstractNodeEvaluationSystem) : node evaluation system 
+
+        Returns
+        -----
+        The score of the node
         """
         score = 0
         neighbors = list(graph.neighbors(node))
