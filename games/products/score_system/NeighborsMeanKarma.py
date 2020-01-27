@@ -1,17 +1,17 @@
 from .AbstractScoreComputationSystem import AbstractScoreComputationSystem
-from ..evaluation_system import KarmaEvaluation
 
 
-class NeighborsMeanValue(AbstractScoreComputationSystem):
+
+class NeighborsMeanKarma(AbstractScoreComputationSystem):
     """
     """
-    
-    def __init__(self):
+
+    def __init__(self, evalSystem):
         """ CONSTRUCTOR
         -----
         Init the neighbors mean of karma computation system
         """
-        self.nodeEval = KarmaEvaluation()
+        self.nodeEval = evalSystem
 
     
     def computeNodeScore(self, graph, node):

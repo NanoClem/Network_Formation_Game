@@ -1,5 +1,5 @@
 from .AbstractGameFactory import AbstractGameFactory
-from ..products import KarmaEvaluation, NeighborsMeanValue, MinScore, TurnByTurn
+from ..products import KarmaEvaluation, NeighborsMeanKarma, MinScore, TurnByTurn
 
 
 
@@ -13,10 +13,10 @@ class BadKarmaGameFactory(AbstractGameFactory):
         return KarmaEvaluation()
 
 
-    def create_ScoreComputationSystem(self):
+    def create_ScoreComputationSystem(self, evalSystem):
         """
         """
-        return NeighborsMeanValue()
+        return NeighborsMeanKarma(evalSystem)
 
 
     def create_RankingSystem(self):

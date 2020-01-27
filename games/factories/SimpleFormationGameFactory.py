@@ -13,10 +13,10 @@ class SimpleFormationGameFactory(AbstractGameFactory):
         return DegreeEvaluation()
 
 
-    def create_ScoreComputationSystem(self):
+    def create_ScoreComputationSystem(self, evalSystem):
         """
         """
-        return NeighborsSumValue()
+        return NeighborsSumValue(evalSystem)
 
 
     def create_RankingSystem(self):

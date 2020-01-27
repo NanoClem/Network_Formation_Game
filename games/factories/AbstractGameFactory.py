@@ -11,7 +11,7 @@ class AbstractGameFactory(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def create_ScoreComputationSystem(self):
+    def create_ScoreComputationSystem(self, evalSystem):
         raise NotImplementedError
 
     @abstractmethod

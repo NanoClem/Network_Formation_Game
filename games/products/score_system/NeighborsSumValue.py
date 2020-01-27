@@ -1,17 +1,17 @@
 from .AbstractScoreComputationSystem import AbstractScoreComputationSystem
-from ..evaluation_system import DegreeEvaluation
+
 
 
 class NeighborsSumValue(AbstractScoreComputationSystem):
     """
     """
 
-    def __init__(self):
+    def __init__(self, evalSystem):
         """ CONSTRUCTOR
         -----
         Init the neighbors sum value computation system
         """
-        self.nodeEval = DegreeEvaluation()
+        self.nodeEval = evalSystem
 
     
     def computeNodeScore(self, graph, node):
