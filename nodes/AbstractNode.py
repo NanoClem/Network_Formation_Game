@@ -6,10 +6,27 @@ from .strategies import AbstractStrategy
 class AbstractNode(ABC):
     """
     """
-
+    
     @abstractmethod
-    def __init__(self, strategy : AbstractStrategy):
+    def __init__(self, id, strategy : AbstractStrategy):
+        """
+        """
         self._strategy = strategy
+        self._id = id
+
+
+
+    def __repr__(self):
+        """
+        """
+        return str(self._id)
+
+
+
+    def __str__(self):
+        """
+        """
+        return str(self._id)
 
 
 

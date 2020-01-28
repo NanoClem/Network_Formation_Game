@@ -1,5 +1,6 @@
 from random import random
 from .AbstractGraph import AbstractGraph
+from nodes import Randomizer
 
 
 
@@ -27,7 +28,7 @@ class MyRandomGraph(AbstractGraph):
     def setup(self):
         """
         """
-        nbunch  = [i for i in range(self.n)]
+        nbunch  = [Randomizer(i, self.p) for i in range(self.n)]    # create nodes with a random strategy
         self.add_nodes_from(nbunch)
         
 
@@ -80,15 +81,13 @@ class MyRandomGraph(AbstractGraph):
         """ Generate edges of the graph
         """
         ebunch  = []                  # graph edges
-        randnum = 0                   # randomly generated number (between 0 and 1 included)
         temp    = list(self.nodes)    # temporary stock nodes without the current one to avoid self-connection
         
         for node in list(self.nodes):
             temp.remove(node)         # removing current node
             for ni in temp:
                 # NODE STRATEGY
-                randnum = random()
-                if randnum <= self.p:
+               if ni.isConnecting():
                     ebunch.append( (node, ni) )     # add new connexion to ebunch 
             temp.append(node)                       # get current node back
         

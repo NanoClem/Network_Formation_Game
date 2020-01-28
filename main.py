@@ -21,11 +21,11 @@ if __name__ == "__main__":
     #=========================================================
     # PARAMS
     n = 5
-    p = 0.1
+    p = 0.4
     G_rand = MyRandomGraph(n, p, "Random graph")
     G_rand.generate()
 
-    # # RESULTS
+    # RESULTS
     scores = dict(G_rand.nodes.data())
     scores = sorted(scores.items(), key=lambda x: x[1]['score'], reverse=True)
     edges = dict(G_rand.edges.items())
