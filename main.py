@@ -4,6 +4,7 @@ from random import random
 import json
 
 from graphs import MyRandomGraph
+from games import SimpleFormationGame
 
 
 
@@ -19,16 +20,20 @@ if __name__ == "__main__":
     #=========================================================
     #   RANDOM GRAPH
     #=========================================================
-    # PARAMS
+    # GRAPH PARAMS
     n = 5
     p = 0.4
     G_rand = MyRandomGraph(n, p, "Random graph")
-    G_rand.generate()
+
+    # GAME
+    nbturns = 1
+    game    = SimpleFormationGame()
+    game.start(G_rand, nbturns)
 
     # RESULTS
-    scores = dict(G_rand.nodes.data())
-    scores = sorted(scores.items(), key=lambda x: x[1]['score'], reverse=True)
-    edges = dict(G_rand.edges.items())
+    scores  = G_rand.nodes(data=True)
+    ranking = game.getRanking()
+    edges   = G_rand.edges
     
     # PRINT
     print("\nGRAPH")
@@ -36,7 +41,7 @@ if __name__ == "__main__":
     print("NODES")
     print( "{} \n".format(scores) )
     print("RANKING")
-    print( "{} \n".format(scores))
+    print( "{} \n".format(ranking) )
     print("EDGES")
     print("{} \n".format(edges) )
     

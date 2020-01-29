@@ -39,7 +39,7 @@ class AbstractGraph(ABC, nx.Graph):
 
 
     def getScore(self, node):
-        """ Returns the score of a node, corresponding to the sum of its neighbors's values
+        """ Returns the score of a node
         
         Parameters
         -----
@@ -50,4 +50,15 @@ class AbstractGraph(ABC, nx.Graph):
         The score field of the node
         """
         return self.nodes[node]['score']
+
+
+
+    def getAllScores(self):
+        """ Returns all scores for each node in the graph
+
+        Returns
+        -----
+        Nbunch of the graph nodes with only the "score" field
+        """
+        return dict(self.nodes(data='score'))
         
