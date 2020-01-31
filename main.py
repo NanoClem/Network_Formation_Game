@@ -68,7 +68,7 @@ def showResults(graph):
 
 
 if __name__ == "__main__":
-    
+   
     # GRAPH
     n = 5
     p = 0.4

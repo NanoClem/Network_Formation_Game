@@ -7,11 +7,18 @@ class AbstractStrategy(ABC):
     """
 
     @abstractmethod
-    def connectingDecision(self, indicator = None):
+    def connectingDecision(self, node, nbunch, indicator = ""):
         """ Establish a connecting strategy among nodes, based or not on a specific indicator.
 
         Parameters
         -----
-        indicator (any) : crucial element which allows the node to decide if it connects or not
+        node (AbstractNode) : node which apply the strategy
+        nbunch (list) : nodes which are tested for connection
+        indicator (string) : node attribute on which the test is based 
+
+        Returns
+        -----
+        (ebunch) The differents connections the node decided to make \n
+        (ebunch) The differents defections the node decided to make
         """
         raise NotImplementedError

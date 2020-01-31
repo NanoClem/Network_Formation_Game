@@ -31,17 +31,8 @@ class AbstractNode(ABC):
 
 
     @abstractmethod
-    def isConnecting(self, node) -> bool:
-        """ Decides weither to connect or not to a given node. \n
-        If the node is already connected, then it's a matter of defecting of not.
-
-        Parameters
-        -----
-        node (AbstractNode) : element weither to connect or not
-
-        Returns
-        -----
-        True if it connect, false either
+    def isConnecting(self, nbunch, indicator = ""):
+        """
         """
         raise NotImplementedError
 

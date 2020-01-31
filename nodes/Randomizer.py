@@ -19,10 +19,10 @@ class Randomizer(AbstractNode):
 
 
 
-    def isConnecting(self):
+    def isConnecting(self, nbunch, indicator = ""):
         """
         """
-        return self.getStrategy().connectingDecision()
+        return self.getStrategy().connectingDecision(self, nbunch, indicator)
 
 
 

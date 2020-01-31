@@ -14,11 +14,26 @@ class RandomStrategy(AbstractStrategy):
 
 
 
-    def connectingDecision(self, indicator = None):
-        """
-        """
-        randnum = random()
-        if randnum <= self._p:
-            return True
+    def connectingDecision(self, node, nbunch, indicator = ""):
+        """ Random connection to nodes
 
-        return False
+        Parameters
+        -----
+        node (AbstractNode) : node which apply the strategy
+        nbunch (list) : nodes which are tested for connection
+        indicator (string) : node attribute on which the test is based 
+
+        Returns
+        -----
+        (ebunch) The differents connections the node decided to make \n
+        (ebunch) The differents defections the node decided to make
+        """
+        connections, defections = [], []
+        for n in nbunch:
+            randnum = random()
+            if randnum <= self._p:
+                connections.append( (node, n[0]) )
+            else:
+               defections.append( (node, n[0]) ) 
+        
+        return connections, defections

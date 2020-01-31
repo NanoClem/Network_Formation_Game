@@ -38,23 +38,22 @@ class SimpleFormationGame(AbstractGame):
         graph (nx.Graph) : the graph which the game is based on \n
         nbturns (int) : number of turns of the game
         """
-        nodes = list(graph.nodes)
+        indicator = 'value'
+        nodes = list(graph.nodes(data=indicator))
+
         for i in range(nbturns):
             self.setCurrentTurn(i+1)       # set next turn
             ebunch  = []                   # graph edges
-            temp    = nodes                # temporary stock nodes without the current one to avoid self-connection
-            
+            temp    = []                   # temporaly store graph nodes
             # TESTING ALL NODES
             for node in nodes:
-                temp.remove(node)         # removing current node
-                ##TODO : evaluate each node at the end of each
-                for ni in temp:
-                    # NODE STRATEGY
-                    if ni.isConnecting():
-                        ebunch.append( (node, ni) )     # add new connexion to ebunch 
-                temp.append(node)                       # get current node back
+                temp = nodes
+                temp.remove(node)          # removing current node to avoid self-connection
+                # COMPUTE AND ADDING NEW EDGES
+                connections, defections = node[0].isConnecting(temp, indicator)
+                ebunch = ebunch + connections    # adding new edges
             
-            # ADD EDGES
+            # ADD EDGES TO THE GRAPH
             graph.add_edges_from(ebunch)  # add edges
         
         self.initScoring(graph)     # SCORING
