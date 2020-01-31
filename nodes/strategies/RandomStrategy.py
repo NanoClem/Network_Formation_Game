@@ -14,11 +14,11 @@ class RandomStrategy(AbstractStrategy):
 
 
 
-    def connectingDecision(self):
+    def connectingDecision(self, indicator = None):
         """
         """
         randnum = random()
         if randnum <= self._p:
             return True
-            
+
         return False

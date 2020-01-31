@@ -7,7 +7,13 @@ class MaxScoreStrategy(AbstractStrategy):
     """
     """
 
-    def connectingDecision(self):
-        """
-        """
+    def connectingDecision(self, indicator = None):
+        """ Decides to connect to a node in order to maximize its final score.
+
+        Parameters
+        -----
+
+        Returns
+        -----
+        """ 
         pass
