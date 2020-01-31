@@ -10,7 +10,11 @@ class SimpleFormationGame(AbstractGame):
     """
 
     def __init__(self, factory : AbstractGameFactory = None):
-        """
+        """ CONSTRUCTOR
+
+        Parameters
+        ------
+        factory (AbstractGameFactory) : the game factory used to build the game
         """
         if factory:
             super().__init__(factory)   # init parent
@@ -20,14 +24,19 @@ class SimpleFormationGame(AbstractGame):
 
 
     def defaultFactory(self):
-        """
+        """ Set a default game factory to the parent constructor
         """
         super().__init__( BadKarmaGameFactory() )
 
 
 
     def start(self, graph, nbturns):
-        """
+        """ Begin the game with the given graph and number of turns. \n
+
+        Parameters
+        -----
+        graph (nx.Graph) : the graph which the game is based on \n
+        nbturns (int) : number of turns of the game
         """
         nodes = list(graph.nodes)
         for i in range(nbturns):
