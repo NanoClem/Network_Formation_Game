@@ -29,14 +29,6 @@ class AbstractGame(object):
 
 
     @abstractmethod
-    def start(self, nbturns):
-        """
-        """
-        raise NotImplementedError
-
-
-
-    @abstractmethod
     def _update(self, node):
         """ Update one or many attributes of node
 
@@ -45,6 +37,22 @@ class AbstractGame(object):
         node (AbstractNode) : node to update
         """
         raise NotImplementedError
+
+
+
+    @abstractmethod
+    def start(self, nbturns):
+        """
+        """
+        raise NotImplementedError
+
+
+    
+    @abstractmethod
+    def setEvaluationSystem(self, new_evalSystem):
+        """
+        """
+        self.nodeEval = new_evalSystem
 
 
 

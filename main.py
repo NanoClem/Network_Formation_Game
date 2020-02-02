@@ -11,6 +11,8 @@ from nodes.strategies import MaxScoreStrategy
 from nodes.strategies import RandomStrategy
 
 from games import SimpleFormationGame
+from games import RealisticFormationGame
+
 
 
 
@@ -79,10 +81,20 @@ def simple_formation_simulation(n):
 
 
 
-def realistic_formation_simulation():
+def realistic_formation_simulation(n):
+    """ Start a simulation of RealisticFormationGame, where nodes connect to those who will maximize their value. \n
+    This time, a node is evaluated between 50% and 150% of its real value.
+
+    (int) n : number of nodes
     """
-    """
-    pass
+    nodes = [Node(i, MaxScoreStrategy()) for i in range(n)]
+    graph = EmptyGraph(nodes, "Max score startegy simulation")
+    game = RealisticFormationGame(graph)
+
+    play(game, 1)
+    printResults(game)
+    plotResults(game.getGraph())
+    return game.getRanking(), game.getGraph()
 
 
 
@@ -111,5 +123,6 @@ if __name__ == "__main__":
 
     # SIMULATIONS
     simple_formation_simulation(n)
+    realistic_formation_simulation(n)
     
      

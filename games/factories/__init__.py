@@ -1,2 +1,3 @@
 from .SimpleFormationGameFactory import SimpleFormationGameFactory
 from .BadKarmaGameFactory import BadKarmaGameFactory
+from .RealisticFormationGameFactory import RealisticFormationGameFactory
