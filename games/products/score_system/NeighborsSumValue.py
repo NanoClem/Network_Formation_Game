@@ -21,9 +21,8 @@ class NeighborsSumValue(AbstractScoreComputationSystem):
         The score of the node
         """
         score = graph.nodes[node]['score']
-        print(graph.nodes[node]['value'])
         neighbors = list(graph.neighbors(node))
         for n in neighbors:
-            score += graph.getValue(n)
+            score += evalSystem.evaluateNode(graph, n)
             
         return score

@@ -70,7 +70,7 @@ class SimpleFormationGame(AbstractGame):
             # TESTING ALL NODES
             for node in nodes:
                 ebunch  = []   
-                temp = nodes
+                temp = list(self.graph.nodes(data = indicator))
                 temp.remove(node)          # removing current node to avoid self-connection
 
                 # APPLY STRATEGY AND 
@@ -82,6 +82,7 @@ class SimpleFormationGame(AbstractGame):
 
                 # UPDATE NODES
                 self._update(node[0])   # update only connections
+                temp.append(node)
         
         self.initScoring()     # SCORING
         self.initRanking()     # RANKING
