@@ -34,6 +34,7 @@ class AbstractGraph(ABC, nx.Graph):
         ----- 
         The node degree
         """
+        print(self.nodes[node])
         return self.nodes[node]['value']
 
 
@@ -61,4 +62,22 @@ class AbstractGraph(ABC, nx.Graph):
         Nbunch of the graph nodes with only the "score" field
         """
         return dict(self.nodes(data='score'))
+
+
+
+    def getAllValues(self):
+        """ Returns all values for each node in the graph
+
+        Returns
+        -----
+        Nbunch of the graph nodes with only the "value" field
+        """
+        return dict(self.nodes(data='value'))
+
+
+    
+    def setValue(self, node, new_value):
+        """
+        """
+        self.nodes[node]['value'] = new_value
         

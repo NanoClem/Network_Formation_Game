@@ -20,7 +20,7 @@ class NeighborsMeanKarma(AbstractScoreComputationSystem):
         -----
         The score of the node
         """
-        score = 0
+        score = graph.nodes[node]['score']
         neighbors = list(graph.neighbors(node))
         for n in neighbors:
             graph.nodes[n]['value'] = evalSystem.evaluateNode(graph, n)  # percentage of a neighbor's defection

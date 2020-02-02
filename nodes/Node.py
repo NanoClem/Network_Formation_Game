@@ -1,18 +1,17 @@
-from abc import ABC, abstractmethod
+from .AbstractNode import AbstractNode
 from .strategies import AbstractStrategy
 
 
 
-class AbstractNode(ABC):
+class Node(AbstractNode):
     """
     """
     
-    @abstractmethod
     def __init__(self, id, strategy : AbstractStrategy):
+        """ Constructor \n
+        Calls parent constructor (AbstractNode)
         """
-        """
-        self._strategy = strategy
-        self._id = id
+        super().__init__(id, strategy)
 
 
 
@@ -27,13 +26,6 @@ class AbstractNode(ABC):
         """
         """
         return str(self._id)
-
-
-
-    def applyStrategy(self, nbunch):
-        """
-        """
-        return self.getStrategy().connectingDecision(self, nbunch)
 
 
 

@@ -20,10 +20,10 @@ class NeighborsSumValue(AbstractScoreComputationSystem):
         -----
         The score of the node
         """
-        score = 0
+        score = graph.nodes[node]['score']
+        print(graph.nodes[node]['value'])
         neighbors = list(graph.neighbors(node))
         for n in neighbors:
-            graph.nodes[n]['value'] = evalSystem.evaluateNode(graph, n)  # assign value to the node
             score += graph.getValue(n)
             
         return score

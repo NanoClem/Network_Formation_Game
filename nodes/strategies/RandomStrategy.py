@@ -14,7 +14,7 @@ class RandomStrategy(AbstractStrategy):
 
 
 
-    def connectingDecision(self, node, nbunch, indicator = ""):
+    def connectingDecision(self, node, nbunch):
         """ Random connection to nodes
 
         Parameters

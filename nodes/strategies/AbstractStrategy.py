@@ -7,7 +7,7 @@ class AbstractStrategy(ABC):
     """
 
     @abstractmethod
-    def connectingDecision(self, node, nbunch, indicator = ""):
+    def connectingDecision(self, node, nbunch):
         """ Establish a connecting strategy among nodes, based or not on a specific indicator.
 
         Parameters

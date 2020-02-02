@@ -1,6 +1,7 @@
 from random import random
 from .AbstractGraph import AbstractGraph
-from nodes import Randomizer
+from nodes.strategies import RandomStrategy
+from nodes import Node
 
 
 
@@ -25,8 +26,19 @@ class MyRandomGraph(AbstractGraph):
 
 
 
-    def setup(self):
+    def setup(self, nbunch = None):
         """
         """
-        nbunch  = [Randomizer(i, self.p) for i in range(self.n)]    # create nodes with a random strategy
+        nbunch  = [Node(i, RandomStrategy(self.p)) for i in range(self.n)]    # create nodes with a random strategy
         self.add_nodes_from(nbunch)
+
+
+
+    def getProbability(self):
+        """ Return the chance a node has to connect to another
+
+        Returns
+        -----
+        (float) : probability of connection
+        """
+        return self.p
