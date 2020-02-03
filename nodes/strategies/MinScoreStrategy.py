@@ -2,12 +2,12 @@ from .AbstractStrategy import AbstractStrategy
 
 
 
-class MaxScoreStrategy(AbstractStrategy):
+class MinScoreStrategy(AbstractStrategy):
     """
     """
 
     def connectingDecision(self, node, nbunch):
-        """ Decides to connect to a node in order to maximize its final score.
+        """ Decides to connect to a node in order to minimise its final score.
 
         Parameters
         -----
@@ -21,7 +21,7 @@ class MaxScoreStrategy(AbstractStrategy):
         """
         # INIT
         connections, defections = [], []
-        sortedNodes = sorted(nbunch, key=lambda tup: tup[1], reverse = True)    # descending sort based on the 2nd element of each tuple
+        sortedNodes = sorted(nbunch, key=lambda tup: tup[1], reverse = False)    # ascending sort based on the 2nd element of each tuple
 
         # CONNECTIONS
         ##TODO : Choose randomly if there is equality

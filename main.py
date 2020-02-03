@@ -8,10 +8,12 @@ from graphs import EmptyGraph
 
 from nodes import Node
 from nodes.strategies import MaxScoreStrategy
+from nodes.strategies import MinScoreStrategy
 from nodes.strategies import RandomStrategy
 
 from games import SimpleFormationGame
 from games import RealisticFormationGame
+from games import BadKarmaGame
 
 
 
@@ -71,7 +73,7 @@ def simple_formation_simulation(n):
     (int) n : number of nodes
     """
     nodes = [Node(i, MaxScoreStrategy()) for i in range(n)]
-    graph = EmptyGraph(nodes, "Max score startegy simulation")
+    graph = EmptyGraph(nodes, "Simple formation game")
     game = SimpleFormationGame(graph)
 
     play(game, 1)
@@ -82,13 +84,13 @@ def simple_formation_simulation(n):
 
 
 def realistic_formation_simulation(n):
-    """ Start a simulation of RealisticFormationGame, where nodes connect to those who will maximize their value. \n
+    """ Start a simulation of RealisticFormationGame, where nodes connect to those who will maximize their score. \n
     This time, a node is evaluated between 50% and 150% of its real value.
 
     (int) n : number of nodes
     """
     nodes = [Node(i, MaxScoreStrategy()) for i in range(n)]
-    graph = EmptyGraph(nodes, "Max score startegy simulation")
+    graph = EmptyGraph(nodes, "Realistic formation game")
     game = RealisticFormationGame(graph)
 
     play(game, 1)
@@ -98,10 +100,19 @@ def realistic_formation_simulation(n):
 
 
 
-def karma_formation_simulation():
+def karma_formation_simulation(n):
+    """ Start a simulation of BadKarmaGame, where nodes connect to those which have the less karma value. \n
+
+    (int) n : number of nodes
     """
-    """
-    pass
+    nodes = [Node(i, MinScoreStrategy()) for i in range(n)]
+    graph = EmptyGraph(nodes, "Karma formation game")
+    game = BadKarmaGame(graph)
+
+    play(game, 1)
+    printResults(game)
+    plotResults(game.getGraph())
+    return game.getRanking(), game.getGraph()
 
     
 
@@ -124,5 +135,6 @@ if __name__ == "__main__":
     # SIMULATIONS
     simple_formation_simulation(n)
     realistic_formation_simulation(n)
+    karma_formation_simulation(n)
     
      

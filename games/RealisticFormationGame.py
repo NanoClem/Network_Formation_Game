@@ -30,25 +30,12 @@ class RealisticFormationGame(AbstractGame):
 
     
 
-    ##TODO : don't overwrite attribute if already existing
     def _setup(self):
         """
         """
         attributes = ['value', 'score']
         for attr in attributes:
             nx.set_node_attributes(self.graph, 0, attr)
-
-
-
-    def _update(self, node):
-        """ Update the value attribute of a node
-
-        Parameters
-        -----
-        node (AbstractNode) : node to update
-        """
-        value = self.nodeEval.evaluateNode(self.graph, node)    # get the new value
-        self.graph.setValue(node, value)                        # assign the new value to the node
 
 
 
@@ -69,7 +56,6 @@ class RealisticFormationGame(AbstractGame):
 
             # TESTING ALL NODES
             for node in nodes:
-                ebunch  = []   
                 temp = list(self.graph.nodes(data = indicator))
                 temp.remove(node)          # removing current node to avoid self-connection
 
@@ -77,11 +63,10 @@ class RealisticFormationGame(AbstractGame):
                 results = node[0].applyStrategy(temp)
 
                 # ADD NEW EDGES
-                ebunch = ebunch + results[0]        # storing edges
-                self.graph.add_edges_from(ebunch)   # add them to the graph
+                self.graph.add_edges_from(results[0])   # add them to the graph
 
                 # UPDATE NODES
-                self._update(node[0])   # update only connections
+                self._update(node[0], indicator)   # update only connections
                 temp.append(node)
         
         self.initScoring()     # SCORING

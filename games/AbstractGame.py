@@ -28,15 +28,16 @@ class AbstractGame(object):
 
 
 
-    @abstractmethod
-    def _update(self, node):
-        """ Update one or many attributes of node
+    def _update(self, node, attribute):
+        """ Update the an attribute of a node
 
         Parameters
         -----
         node (AbstractNode) : node to update
+        attribute (string) : attribute to set
         """
-        raise NotImplementedError
+        value = self.nodeEval.evaluateNode(self.graph, node)    # get the new value
+        self.graph.setAttribute(node, attribute, value)         # assign the new value to the node
 
 
 
@@ -53,6 +54,10 @@ class AbstractGame(object):
         """
         """
         self.nodeEval = new_evalSystem
+
+
+    
+    
 
 
 

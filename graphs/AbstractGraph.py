@@ -76,8 +76,8 @@ class AbstractGraph(ABC, nx.Graph):
 
 
     
-    def setValue(self, node, new_value):
+    def setAttribute(self, node, attribute, new_value):
         """
         """
-        self.nodes[node]['value'] = new_value
+        self.nodes[node][attribute] = new_value
         

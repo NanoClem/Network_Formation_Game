@@ -1,36 +1,53 @@
-
+import networkx as nx
 from .factories import AbstractGameFactory
 from .factories import BadKarmaGameFactory
 from .AbstractGame import AbstractGame
 
 
 
-class SimpleFormationGame(AbstractGame):
+class BadKarmaGame(AbstractGame):
     """
     """
 
-    def __init__(self, factory : AbstractGameFactory = None):
+    def __init__(self, graph, factory : AbstractGameFactory = None):
         """ CONSTRUCTOR
 
         Parameters
         ------
         factory (AbstractGameFactory) : the game factory used to build the game
         """
+        # GRAPH
+        self.graph = graph
+
+        # FACTORY
         if factory:
-            super().__init__(factory)   # init parent
+            super().__init__(graph, factory)   # init parent
         else:
-            self.defaultFactory()
+            super().__init__(graph, BadKarmaGameFactory() )  # default factory
 
+        # SETUP
+        self._setup()
 
+    
 
-    def defaultFactory(self):
-        """ Set a default game factory to the parent constructor
+    ##TODO : don't overwrite attribute if already existing
+    def _setup(self):
         """
-        super().__init__( BadKarmaGameFactory() )
+        """
+        attributes = ['value', 'score', 'karma']
+        for attr in attributes:
+            nx.set_node_attributes(self.graph, 0, attr)
 
 
 
-    def start(self, graph, nbturns):
+    def _applyKarma(self, node, karma):
+        """
+        """
+        self.graph.nodes[node]['karma'] += karma
+
+
+
+    def start(self, nbturns):
         """ Begin the game with the given graph and number of turns. \n
 
         Parameters
@@ -38,23 +55,31 @@ class SimpleFormationGame(AbstractGame):
         graph (nx.Graph) : the graph which the game is based on \n
         nbturns (int) : number of turns of the game
         """
-        nodes = list(graph.nodes)
+        indicator = 'value'     # game's indicator on which nodes base their strategy
+        nodes = list(self.graph.nodes(data = indicator))
+        temp  = []                   # temporaly store graph nodes
+
         for i in range(nbturns):
             self.setCurrentTurn(i+1)       # set next turn
-            ebunch  = []                   # graph edges
-            temp    = nodes                # temporary stock nodes without the current one to avoid self-connection
-            
+
             # TESTING ALL NODES
             for node in nodes:
-                temp.remove(node)         # removing current node
-                for ni in temp:
-                    # NODE STRATEGY
-                    if ni.isConnecting():
-                        ebunch.append( (node, ni) )     # add new connexion to ebunch 
-                temp.append(node)                       # get current node back
-            
-            # ADD EDGES
-            graph.add_edges_from(ebunch)  # add edges
+                temp = list(self.graph.nodes(data = indicator))
+                temp.remove(node)          # removing current node to avoid self-connection
+
+                # APPLY STRATEGY AND 
+                connections, defections = node[0].applyStrategy(temp)
+
+                # ADD NEW EDGES
+                self.graph.add_edges_from(connections)   # add them to the graph
+
+                # APPLY KARMA
+                self._applyKarma(node[0], len(defections))   # add the amount of defections to the karma value
+                self.graph.remove_edges_from(defections)
+
+                # UPDATE NODES
+                self._update(node[0], indicator)   # update only connections
+                temp.append(node)
         
-        self.initScoring(graph)     # SCORING
-        self.initRanking(graph)     # RANKING
+        self.initScoring()     # SCORING
+        self.initRanking()     # RANKING

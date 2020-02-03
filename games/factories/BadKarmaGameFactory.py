@@ -13,10 +13,10 @@ class BadKarmaGameFactory(AbstractGameFactory):
         return KarmaEvaluation()
 
 
-    def create_ScoreComputationSystem(self, evalSystem):
+    def create_ScoreComputationSystem(self):
         """
         """
-        return NeighborsMeanKarma(evalSystem)
+        return NeighborsMeanKarma()
 
 
     def create_RankingSystem(self):

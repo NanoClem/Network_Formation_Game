@@ -21,7 +21,6 @@ class RandomStrategy(AbstractStrategy):
         -----
         node (AbstractNode) : node which apply the strategy
         nbunch (list) : nodes which are tested for connection
-        indicator (string) : node attribute on which the test is based 
 
         Returns
         -----
